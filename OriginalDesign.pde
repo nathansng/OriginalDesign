@@ -1,4 +1,16 @@
+/* Work on Volcano Code */
+
+
 import java.util.Random;
+
+Random randColor1 = new Random();
+Random randColor2 = new Random();
+Random randColor3 = new Random();
+
+int color1 = randColor1.nextInt(255) + 0;
+int color2 = randColor2.nextInt(255) + 0;
+int color3 = randColor3.nextInt(255) + 0; 
+
 void setup() {
   size(450,450);
   background(255, 255, 255);
@@ -8,10 +20,7 @@ void setup() {
 void draw() {
   table();
   fishTank();
-  System.out.println(fishX1);
-  System.out.println(fishY1);
-  System.out.println(fishX2);
-  System.out.println(fishY2);
+  //fish();
 }
 
 //Table 
@@ -76,6 +85,27 @@ int fishY1 = rand2.nextInt(50) + 1;
 int fishX2 = rand3.nextInt(50) + 1;
 int fishY2 = rand4.nextInt(50) + 1;
 
+int x = 250;
+int y = 250;
+
 void fish() {
-  
+  fill(color1, color2, color3);
+  noStroke();
+  ellipse(x, y, 75, 50);
+  triangle(x, y, x + 50, y + 25, x + 50, y - 25);
+  fill(0);
+  ellipse(x - 20, y - 5, 5, 5);
+}
+
+
+
+void volcano () {
+  stroke(0);
+  fill(100, 100, 100);
+  beginShape();
+    vertex(50, 50);
+
+
+
+  endShape();
 }
