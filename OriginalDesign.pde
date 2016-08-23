@@ -21,15 +21,17 @@ void draw() {
   table();
   fishTank();
   //fish();
+  volcano();
 }
 
 //Table 
 void table () {
-	strokeWeight(2);
+	strokeWeight(1);
 
   stroke(0);
 
-	fill(0, 38, 8);
+	//fill(0, 38, 8);
+  fill(184);
 
 	//Legs of Table
 	rect(50, 350, 50, 100);
@@ -53,7 +55,14 @@ void fishTank () {
 	fill(51, 193, 255);
 	rect(50, 50, 300, 250);
 
+  //edges
+  strokeWeight(0.5);
+  line(100, 25, 100, 275);
+  line(100, 275, 50, 300);
+  line(100, 275, 400, 275);
+
 	//top
+  strokeWeight(1);
   beginShape();
     vertex(50, 50);
     vertex(100, 25);
@@ -62,6 +71,8 @@ void fishTank () {
   endShape();
 
 
+
+  strokeWeight(1);
   //Right Side
   beginShape();
     vertex(351, 50);
@@ -101,11 +112,16 @@ void fish() {
 
 void volcano () {
   stroke(0);
-  fill(100, 100, 100);
+  strokeWeight(1);
+  fill(75, 50, 0);
+
+  //ellipse(225, 200, 100, 50);
+
   beginShape();
-    vertex(50, 50);
+    vertex(125, 290);
+    vertex(325, 290);
+    vertex(275, 190);
+    vertex(175, 190);
+  endShape(CLOSE);
 
-
-
-  endShape();
 }
