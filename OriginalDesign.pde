@@ -3,14 +3,6 @@
 
 import java.util.Random;
 
-Random randColor1 = new Random();
-Random randColor2 = new Random();
-Random randColor3 = new Random();
-
-int color1 = randColor1.nextInt(255) + 0;
-int color2 = randColor2.nextInt(255) + 0;
-int color3 = randColor3.nextInt(255) + 0; 
-
 void setup() {
   size(450,450);
   background(255, 255, 255);
@@ -18,10 +10,13 @@ void setup() {
 
 
 void draw() {
+  background(255, 255, 255);
   table();
   fishTank();
-  //fish();
+  bubbles();
+  fishTankTop();
   volcano();
+  
 }
 
 //Table 
@@ -84,23 +79,28 @@ void fishTank () {
   
 }
 
+
+void fishTankTop () {
+  strokeWeight(1);
+  stroke(0);
+  fill(51, 193, 255);
+
+  //top
+  strokeWeight(1);
+  beginShape();
+    vertex(50, 50);
+    vertex(100, 25);
+    vertex(400, 25);
+    vertex(350, 50);
+  endShape();
+}
+
 //Fishes
-Random rand1 = new Random();
-Random rand2 = new Random();
-Random rand3 = new Random();
-Random rand4 = new Random();
-
-int fishX1 = rand1.nextInt(50) + 1;
-int fishY1 = rand2.nextInt(50) + 1;
-
-int fishX2 = rand3.nextInt(50) + 1;
-int fishY2 = rand4.nextInt(50) + 1;
-
 int x = 250;
 int y = 250;
 
 void fish() {
-  fill(color1, color2, color3);
+  //fill(color1, color2, color3);
   noStroke();
   ellipse(x, y, 75, 50);
   triangle(x, y, x + 50, y + 25, x + 50, y - 25);
@@ -111,17 +111,69 @@ void fish() {
 
 
 void volcano () {
-  stroke(0);
+  stroke(1.5);
   strokeWeight(1);
   fill(75, 50, 0);
 
   //ellipse(225, 200, 100, 50);
 
   beginShape();
-    vertex(125, 290);
-    vertex(325, 290);
-    vertex(275, 190);
-    vertex(175, 190);
+  //bottom vertex
+    vertex(125, 280);
+    vertex(150, 290);
+
+    vertex(225, 295);
+    
+    vertex(300, 290);
+    vertex(325, 280);
+
+
+    //top vertex
+    vertex(265, 190);
+    vertex(250, 200);
+    vertex(200, 200);
+    vertex(185, 190);
   endShape(CLOSE);
 
+
+  strokeWeight(0.5);
+  //lines
+  line(250, 200, 300, 290);
+  line(150, 290, 200, 200);
+  //center line
+  line(225, 200, 225, 295);
+
+
+  //top portion
+  fill(0);
+  beginShape();
+    vertex(265, 190);
+    vertex(250, 200);
+    vertex(200, 200);
+    vertex(185, 190);
+
+    vertex(200, 186);
+    vertex(250, 186);
+
+
+  endShape(CLOSE);
+
+}
+
+
+//bubbles
+int xBubbles1 = 200;
+int xBubbles2;
+int xBubbles3;
+
+int yBubbles1 = 300;
+
+
+void bubbles() {
+  fill(157, 255, 248);
+  ellipse(xBubbles1, yBubbles1, 20, 20);
+  yBubbles1 -= 1;
+  if (yBubbles1 < 35) {
+    yBubbles1 = 250;
+  }
 }
