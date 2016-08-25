@@ -1,10 +1,8 @@
-/* Work on Volcano Code */
-
 
 import java.util.Random;
 
 void setup() {
-  size(450,450);
+  size(450,400);
   background(255, 255, 255);
 }
 
@@ -13,6 +11,7 @@ void draw() {
   background(255, 255, 255);
   table();
   fishTank();
+  volcanoShaft();
   bubbles();
   fishTankTop();
   volcano();
@@ -86,28 +85,15 @@ void fishTankTop () {
   fill(51, 193, 255);
 
   //top
-  strokeWeight(1);
   beginShape();
     vertex(50, 50);
     vertex(100, 25);
     vertex(400, 25);
     vertex(350, 50);
   endShape();
+
+  line(50, 50, 350, 50);
 }
-
-//Fishes
-int x = 250;
-int y = 250;
-
-void fish() {
-  //fill(color1, color2, color3);
-  noStroke();
-  ellipse(x, y, 75, 50);
-  triangle(x, y, x + 50, y + 25, x + 50, y - 25);
-  fill(0);
-  ellipse(x - 20, y - 5, 5, 5);
-}
-
 
 
 void volcano () {
@@ -151,29 +137,81 @@ void volcano () {
     vertex(250, 200);
     vertex(200, 200);
     vertex(185, 190);
+  endShape(CLOSE);
 
+}
+
+
+void volcanoShaft() {
+  fill(0);
+  strokeWeight(1);
+
+  beginShape();
     vertex(200, 186);
     vertex(250, 186);
-
-
+    vertex(262, 190);
+    vertex(188, 190);
   endShape(CLOSE);
 
 }
 
 
 //bubbles
-int xBubbles1 = 200;
-int xBubbles2;
-int xBubbles3;
+int xBubbles1 = (int)(Math.random()*50) + 200;
+int xBubbles2 = (int)(Math.random()*50) + 200;
+int xBubbles3 = (int)(Math.random()*50) + 200;
+int xBubbles4 = (int)(Math.random()*50) + 200;
 
-int yBubbles1 = 300;
+int yBubbles1 = 250;
+int yBubbles2 = 300;
+int yBubbles3 = 225;
+int yBubbles4 = 250;
 
 
 void bubbles() {
-  fill(157, 255, 248);
+  fill(157, 255, 255);
+  noStroke();
   ellipse(xBubbles1, yBubbles1, 20, 20);
   yBubbles1 -= 1;
   if (yBubbles1 < 35) {
+    xBubbles1 = (int)(Math.random()*50) + 200;
     yBubbles1 = 250;
+  }
+  //bubble 2
+  ellipse(xBubbles2, yBubbles2, 20, 20);
+  yBubbles2 -= 2;
+  if (yBubbles2 < 35) {
+    xBubbles2 = (int)(Math.random()*50) + 200;
+    yBubbles2 = 250;
+  }
+  //bubble 3
+  ellipse(xBubbles3, yBubbles3, 20, 20);
+  yBubbles3 -= 2.5;
+  if (yBubbles3 < 35) {
+    xBubbles3 = (int)(Math.random()*50) + 200;
+    yBubbles3 = 250;
+  }
+  //bubble 4
+  ellipse(xBubbles4, yBubbles4, 20, 20);
+  yBubbles4 -= 1.5;
+  if (yBubbles4 < 35) {
+    xBubbles4 = (int)(Math.random()*50) + 200;
+    yBubbles4 = 250;
+  }
+
+}
+
+void mousePressed () {
+
+}
+
+void extraBubbles() {
+  
+
+  if (mouseX > 50 && mouseX < 350) { 
+    fill(157, 255, 255);
+    noStroke();
+    ellipse(mouseX, mouseY, 20, 20);
+    yBubbles -= 1;
   }
 }
