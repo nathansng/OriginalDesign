@@ -1,8 +1,14 @@
-import java.util.Random;
+Bubbles [] bubble;
 
 void setup() {
   size(450,400);
   background(255, 255, 255);
+
+  bubble = new Bubbles [35];
+
+  for (int i = 0; i < bubble.length; i ++) {
+    bubble[i] = new Bubbles();
+  }
 }
 
 void draw() {
@@ -10,9 +16,18 @@ void draw() {
   table();
   fishTank();
   volcanoShaft();
-  bubbles();
+
+  for (int i = 0; i < bubble.length; i ++) {
+    bubble[i].move();
+    bubble[i].show();
+    bubble[i].respawn();
+  }
+
+
+
   fishTankTop();
   volcano();  
+
 }
 
 //Table 
@@ -140,82 +155,52 @@ void volcanoShaft() {
 
 }
 
-//bubbles
-int xBubbles1 = (int)(Math.random()*50) + 200;
-int xBubbles2 = (int)(Math.random()*50) + 200;
-int xBubbles3 = (int)(Math.random()*50) + 200;
-int xBubbles4 = (int)(Math.random()*50) + 200;
-int xBubbles5 = (int)(Math.random()*50) + 200;
-int xBubbles6 = (int)(Math.random()*50) + 200;
-int xBubbles7 = (int)(Math.random()*50) + 200;
-int xBubbles8 = (int)(Math.random()*50) + 200;
 
-int yBubbles1 = 250;
-int yBubbles2 = 300;
-int yBubbles3 = 225;
-int yBubbles4 = 230;
-int yBubbles5 = 275;
-int yBubbles6 = 280;
-int yBubbles7 = 230;
-int yBubbles8 = 200;
+class Bubbles {
+  double myX, myY, mySpeed, mySize;
+  int myColor;
 
-void bubbles() {
-  fill(157, 255, 255);
-  noStroke();
-  ellipse(xBubbles1, yBubbles1, 20, 20);
-  yBubbles1 -= 3;
-  if (yBubbles1 < 35) {
-    xBubbles1 = (int)(Math.random()*50) + 200;
-    yBubbles1 = 250;
+  Bubbles() {
+    myX = (float)(Math.random()*50) + 200;
+    myY = 250;
+    mySpeed = (float)(Math.random() * 2) + 2;
+    mySize = 20;
+    myColor = color(157, 255, 255);
   }
-  //bubble 2
-  ellipse(xBubbles2, yBubbles2, 20, 20);
-  yBubbles2 -= 2;
-  if (yBubbles2 < 35) {
-    xBubbles2 = (int)(Math.random()*50) + 200;
-    yBubbles2 = 250;
+
+  void show () {
+    fill(myColor);
+    ellipse((float)myX, (float)myY, (float)mySize, (float)mySize);
   }
-  //bubble 3
-  ellipse(xBubbles3, yBubbles3, 20, 20);
-  yBubbles3 -= 2.5;
-  if (yBubbles3 < 35) {
-    xBubbles3 = (int)(Math.random()*50) + 200;
-    yBubbles3 = 250;
+
+  void move () {
+    myY -= mySpeed;
+
+    if (myX <= 75) {
+      myX += (float)(Math.random() * 2);
+    } else if (myX >= 325) {
+      myX += (float)(Math.random() * 2) - 1;
+    } else if (myX >= 25 && myX <= 325) {
+      myX += (float)(Math.random() * 2) - 1;
+    }
   }
-  //bubble 4
-  ellipse(xBubbles4, yBubbles4, 20, 20);
-  yBubbles4 -= 3.75;
-  if (yBubbles4 < 35) {
-    xBubbles4 = (int)(Math.random()*50) + 200;
-    yBubbles4 = 250;
+
+  void respawn () {
+    if (myY <= 45) {
+      myY = 250;
+      myX = (float)(Math.random()*50) + 200;
+      mySpeed = (float)(Math.random() * 2) + 2;
+    }
   }
-  //bubble 5
-  ellipse(xBubbles5, yBubbles5, 20, 20);
-  yBubbles5 -= 2.75;
-  if (yBubbles5 < 35) {
-    xBubbles5 = (int)(Math.random()*50) + 200;
-    yBubbles5 = 250;
-  }
-  //bubble 6
-  ellipse(xBubbles6, yBubbles6, 20, 20);
-  yBubbles6 -= 4;
-  if (yBubbles6 < 35) {
-    xBubbles6 = (int)(Math.random()*50) + 200;
-    yBubbles6 = 250;
-  }
-  //bubble 7
-  ellipse(xBubbles7, yBubbles7, 20, 20);
-  yBubbles7 -= 3.5;
-  if (yBubbles7 < 35) {
-    xBubbles7 = (int)(Math.random()*50) + 200;
-    yBubbles7 = 250;
-  }
-  //bubble 8
-  ellipse(xBubbles8, yBubbles8, 20, 20);
-  yBubbles8 -= 3.25;
-  if (yBubbles8 < 35) {
-    xBubbles8 = (int)(Math.random()*50) + 200;
-    yBubbles8= 250;
-  }
+
 }
+
+
+
+
+
+
+
+
+
 
